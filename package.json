@@ -1,0 +1,32 @@
+{
+  "name": "camp-ai-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "🏕️ AI — build with AI, ship in 30 minutes. Produced by @NFTmansa.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p ${PORT:-3000}",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "migrate": "node scripts/migrate.mjs"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "next": "^15.5.20",
+    "pg": "^8.22.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "22.10.7",
+    "@types/pg": "^8.20.0",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
+    "postcss": "^8.5.20",
+    "tailwindcss": "^4.3.3",
+    "typescript": "5.7.3"
+  }
+}
