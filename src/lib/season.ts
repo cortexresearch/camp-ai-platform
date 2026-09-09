@@ -41,8 +41,8 @@ export const SEASON_SPONSOR = {
 /** Tonight's build window. Update per episode. */
 export const TONIGHT = {
   prize: "$20",
-  submissionStart: "2026-09-07T20:30:00-05:00",
-  submissionDeadline: "2026-09-07T21:00:00-05:00",
+  submissionStart: "2026-09-08T20:30:00-05:00",
+  submissionDeadline: "2026-09-08T21:00:00-05:00",
 };
 
 export async function getEpisodes(): Promise<Episode[]> {
