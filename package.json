@@ -2,6 +2,7 @@
   "name": "camp-ai-platform",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "description": "🏕️ AI — build with AI, ship in 30 minutes. Produced by @NFTmansa.",
   "scripts": {
     "dev": "next dev",
