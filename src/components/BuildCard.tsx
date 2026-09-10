@@ -5,10 +5,8 @@ import { ShareButton } from "./ShareButton";
 import { rateAction } from "@/lib/actions";
 
 const SITE_URL = "https://campai.cortexresearch.group";
-// User-uploaded static HTML demos are served from Railway's own subdomain
-// (a genuinely different origin/cookie jar from SITE_URL), not our custom
-// domain — that's what makes it safe to grant the sandbox allow-same-origin
-// so demos can use localStorage/sessionStorage like a normal page would.
+// Keep uploaded documents on the dedicated host; response sandboxing also
+// isolates direct app-origin requests.
 const UPLOADS_ORIGIN = "https://camp-ai-platform-production.up.railway.app";
 
 export interface BuildCardData {

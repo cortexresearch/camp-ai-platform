@@ -1,51 +1,43 @@
 @import "tailwindcss";
 
-/**
- * 🏕️ AI design tokens.
- *
- * Direction: night at a technical basecamp. Deep blue-black ground, ember
- * orange as the single hot accent, aurora cyan for data and interactive state,
- * and a lime signal reserved for "live". Everything else is a neutral ramp.
- *
- * The palette is deliberately narrow. Three accents, used consistently, read
- * as a designed system; six read as a template.
- */
+/* Basecamp: warm paper surfaces, forest green controls, editorial headings.
+ * Token names stay compatible with existing page and form components. */
 
 @theme {
-  /* Ground — cool, slightly blue, never pure black. */
-  --color-ink-950: #05070b;
-  --color-ink-900: #080b12;
-  --color-ink-850: #0b0f17;
-  --color-ink-800: #10151f;
-  --color-ink-700: #171d29;
-  --color-ink-600: #212936;
-  --color-ink-500: #2e3747;
+  /* Paper surfaces and borders. */
+  --color-ink-950: #f4f2e9;
+  --color-ink-900: #faf9f1;
+  --color-ink-850: #eef0e3;
+  --color-ink-800: #e9eddd;
+  --color-ink-700: #d7dfcb;
+  --color-ink-600: #bccbad;
+  --color-ink-500: #849576;
 
-  /* Text ramp — 3 steps, all AA or better on ink-900. */
-  --color-mist-100: #f2f5f9;
-  --color-mist-300: #c3ccdb;
-  --color-mist-500: #8b97ab;
-  --color-mist-700: #5d6879;
+  /* Forest text ramp. */
+  --color-mist-100: #233b30;
+  --color-mist-300: #3e513c;
+  --color-mist-500: #5a6c51;
+  --color-mist-700: #627157;
 
-  /* Ember — the campfire. Primary accent, used sparingly. */
-  --color-ember-300: #ffb066;
-  --color-ember-400: #ff9036;
-  --color-ember-500: #ff7a1a;
-  --color-ember-600: #e05f00;
+  /* Primary controls and warm accents. */
+  --color-ember-300: #854525;
+  --color-ember-400: #a1512c;
+  --color-ember-500: #315f47;
+  --color-ember-600: #264d39;
 
   /* Aurora — data, links, interactive affordances. */
-  --color-aurora-300: #6ee7f9;
-  --color-aurora-400: #34d3ee;
-  --color-aurora-500: #16bcd8;
+  --color-aurora-300: #315f47;
+  --color-aurora-400: #47704c;
+  --color-aurora-500: #345f45;
 
   /* Signal — reserved exclusively for live/active states. */
-  --color-signal-400: #7bf1a8;
-  --color-signal-500: #34d97e;
+  --color-signal-400: #35683a;
+  --color-signal-500: #457a40;
 
-  --color-danger-400: #fb7185;
-  --color-warn-400: #fbbf24;
+  --color-danger-400: #a92f39;
+  --color-warn-400: #8b5a11;
 
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
@@ -53,7 +45,7 @@
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {

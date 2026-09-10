@@ -1,0 +1,45 @@
+{
+  "episode": {
+    "theme": "Reimagine CampAI",
+    "status": "live",
+    "brief": "A whole new reimagination of CampAI. Make it friendlier, tighter on security, and easy to migrate onto from the platform we run today."
+  },
+  "live": true,
+  "counts": {
+    "builds": 157,
+    "builders": 29,
+    "episodes": 27
+  },
+  "builds": [
+    {
+      "id": "a4c655d2-6687-4e20-9766-e4d2a56404eb",
+      "title": "Home Run",
+      "author_name": "₥AN$A",
+      "how_it_works": "Migrated Third Bass — a collaborative planning app where teams raise \"red flags\" on plan steps and a concern only becomes visible once someone seconds it — off Supabase onto Railway Postgres, then added the editing controls it never had. On theme: it's a fork of a fork, since Third Bass is itself a remix of SECONDED.",
+      "models_used": "",
+      "avg_rating": "4.1",
+      "rating_count": "6"
+    },
+    {
+      "id": "35c9925a-6028-41b2-b78d-e496be40a462",
+      "title": "FlagHive",
+      "author_name": "Wil",
+      "how_it_works": "FlagHive: a visual, collaborative planning workspace remixed from Third Bass, which builds on SECONDED. I replaced the aviation theme with emoji identities, three-color feedback, line-by-line discussion, and a complete decision-to-final-plan workflow.\nOpen the public link, sign in with ChatGPT, and choose your name and emoji. The People directory shows recognizable names and stable account tags.\n\nCreate a plan with one step per line—or open the sample to try it immediately. Reviewers flag individual lines and explain why:\n\n🚩 Concern: the reason stays sealed until two distinct accounts raise a red flag. Flag authors stay anonymous.\n🟡 Almost there: named feedback suggesting refinement.\n🟢 Love this: named feedback explaining what works.\n\nOnce a flag lands, the line gets a named discussion thread. The planner can update, accept, or remove a line, with a required justification—or stop the entire plan with an explanation.\n\nAfter every seconded-red and yellow concern is resolved, the planner gives the green light. FlagHive produces a copyable final plan with corrections applied and removed lines omitted. Changes sync every five seconds.",
+      "models_used": "",
+      "avg_rating": "4.3",
+      "rating_count": "5"
+    },
+    {
+      "id": "34587f0a-f623-4d8a-b5f9-0bb7f9dc3757",
+      "title": "Home Run",
+      "author_name": "Air Planes",
+      "how_it_works": "HOME RUN is a collaborative planning and decision tool. Create a plan, let others review it, and flag risks or concerns. Use Premortem to imagine how the plan could fail, and Challenge Flight to test it from different perspectives. Home Run automatically maps risks, disagreements, consensus, and failure points through visual diagrams. Review the Decision Cockpit, resolve concerns, compare plans, and use the final Decision Record to understand what was changed and why. Everyone can participate at the same time—no turns and no room codes.",
+      "models_used": "",
+      "avg_rating": "3.7",
+      "rating_count": "5"
+    }
+  ],
+  "origin": "https://campai.cortexresearch.group",
+  "source": "https://campai.cortexresearch.group/builds",
+  "captured_at": "2026-09-10T01:43:00Z"
+}

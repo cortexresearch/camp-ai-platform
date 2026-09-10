@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./basecamp.css";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 
 export const dynamic = "force-dynamic";
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         {/*
           Fonts are loaded via <link> rather than next/font so the build does
@@ -39,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="terrain min-h-screen">
+      <body className="bc-layout terrain min-h-screen">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-ember-500 focus:px-4 focus:py-2 focus:font-semibold focus:text-ink-950"

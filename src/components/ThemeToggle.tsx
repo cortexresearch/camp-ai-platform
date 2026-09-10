@@ -1,0 +1,3 @@
+'use client';
+import {useEffect,useState} from 'react';
+export function ThemeToggle(){const [theme,setTheme]=useState<'dark'|'light'>('dark');useEffect(()=>{try{const saved=localStorage.getItem('campai-theme');if(saved==='light'){setTheme('light');document.documentElement.dataset.theme='light'}}catch{}},[]);function toggle(){const next=theme==='dark'?'light':'dark';setTheme(next);document.documentElement.dataset.theme=next;try{localStorage.setItem('campai-theme',next)}catch{}}return <button className="bc-theme-toggle" type="button" onClick={toggle} aria-label={`Switch to ${theme==='dark'?'light':'dark'} mode`}>{theme==='dark'?'☀ Light mode':'☾ Dark mode'}</button>}

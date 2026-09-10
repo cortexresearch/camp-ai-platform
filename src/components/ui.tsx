@@ -59,7 +59,7 @@ export function PageHero({
   actions?: ReactNode;
 }) {
   return (
-    <section className="border-b border-ink-700/60 bg-ink-900/30">
+    <section className="bc-subhero border-b border-ink-700/60 bg-ink-900/30">
       <Container className="py-12 sm:py-16">
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ember-400">{eyebrow}</p>
         <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
@@ -90,7 +90,7 @@ export function Prose({ children }: { children: ReactNode }) {
 
 const BUTTON_VARIANTS = {
   primary:
-    "bg-ember-500 text-ink-950 hover:bg-ember-400 font-semibold shadow-[0_8px_28px_-12px_rgba(255,122,26,0.8)]",
+    "bc-primary bg-ember-500 text-ink-950 hover:bg-ember-400 font-semibold",
   secondary: "bg-ink-700 text-mist-100 hover:bg-ink-600 border border-ink-600",
   ghost: "text-mist-300 hover:text-mist-100 hover:bg-ink-800",
   outline: "border border-ember-500/50 text-ember-300 hover:bg-ember-500/10",

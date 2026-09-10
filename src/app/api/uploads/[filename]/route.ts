@@ -28,14 +28,10 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ fil
       "X-Content-Type-Options": "nosniff",
     };
     if (ext === "html") {
-      // User-uploaded HTML is untrusted. It must be linked via the separate
-      // *.up.railway.app domain (see BuildCard's UPLOADS_ORIGIN) rather than
-      // the campai.cortexresearch.group custom domain, so it never shares a
-      // cookie jar or passes Origin-based CSRF checks against the real site.
-      // allow-same-origin is safe *because* of that domain split — it only
-      // grants same-origin powers (localStorage, sessionStorage, etc, which
-      // real single-page demos rely on) within that isolated origin.
-      headers["Content-Security-Policy"] = "sandbox allow-scripts allow-popups allow-same-origin";
+      // Every entry point uses an opaque origin, including direct app-origin URLs.
+      // Stored demos may run scripts, but cannot inherit the application's origin.
+      headers["Content-Security-Policy"] = "sandbox allow-scripts allow-popups";
+      headers["Referrer-Policy"] = "no-referrer";
     }
     return new NextResponse(new Uint8Array(bytes), { headers });
   } catch {
