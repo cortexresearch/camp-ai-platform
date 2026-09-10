@@ -1,0 +1,22 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createRequire,Module} from 'node:module';
+import ts from 'typescript';
+import React from 'react';
+import {renderToStaticMarkup} from 'react-dom/server';
+const root=process.cwd();
+const dest=path.resolve(process.argv[2]||'dist');
+const snapshot=JSON.parse(fs.readFileSync(path.join(root,'docs/sites-public-snapshot.json'),'utf8'));
+const file=path.join(root,'src/components/BasecampHome.tsx');
+const compiled=ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+const module=new Module(file);module.filename=file;module.paths=Module._nodeModulePaths(root);module._compile(compiled,file);
+const {BasecampHome}=module.exports;
+const origin='https://campai.cortexresearch.group';
+const nav=[['/','⌂','Basecamp'],['/challenge','◷','The challenge'],['/builds','▦','Explore builds'],['/vote','✧','Rate builds'],['/leaderboard','♧','Leaderboard'],['/builders','◎','Meet the builders'],['/season','▤','Season archive'],['/spaces','◌','Around the fire']];
+const body=renderToStaticMarkup(React.createElement(BasecampHome,snapshot));
+const html=`<!doctype html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'"><meta name="referrer" content="no-referrer"><title>CampAI — Basecamp</title><meta name="description" content="Build with AI, learn out loud, and find your people. CampAI's new basecamp."><link rel="stylesheet" href="style.css"><script src="theme.js" defer></script></head><body class="bc-layout"><a class="skip" href="#main">Skip to content</a><aside class="bc-sidebar"><a class="bc-brand" href="/">⌁ camp<span>ai</span><small>MAKE SOMETHING REAL.</small></a><div class="bc-season">SEASON 02 / THE NEXT CHAPTER</div><nav class="bc-nav" aria-label="Main navigation">${nav.map(([p,i,n])=>`<a href="${p==='/'?'/':origin+p}" ${p==='/'?'aria-current="page"':''}><span aria-hidden="true">${i}</span>${n}</a>`).join('')}</nav><div class="bc-rule"><span>THE CAMPFIRE RULE</span><p>Be curious.<br>Build generously.<br>Leave it better.</p></div><div class="bc-account"><a class="bc-join" href="${origin}/signup">Join the camp ↗</a><a href="${origin}/login">Log in</a></div></aside><header class="bc-topbar"><span>THE BUILDERS’ CAMPGROUND</span><button class="bc-theme-toggle" id="theme-toggle" aria-label="Switch to light mode">☀ Light mode</button><a href="${origin}/login">Already a camper? Log in →</a></header><main id="main">${body}</main><footer class="bc-footer"><span>Cortex Research Group · Community snapshot, September 9</span><nav aria-label="Footer"><a href="${origin}/rules">Rules</a><a href="${origin}/code-of-conduct">Campfire code</a><a href="${origin}/support">Support</a><a href="${origin}/contact">Contact</a></nav></footer></body></html>`;
+const base=`*{box-sizing:border-box}body{margin:0;background:#f4f2e9;color:#233b30;font:16px/1.5 Arial,Helvetica,sans-serif}a{color:inherit;text-decoration:none}button,input{font:inherit}h1,h2,h3,p{margin:0}a:focus-visible{outline:3px solid #a1512c;outline-offset:4px}.skip{position:absolute;top:-80px;left:12px;z-index:99;background:white;padding:14px}.skip:focus{top:10px}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}\n`;
+fs.mkdirSync(dest,{recursive:true});fs.writeFileSync(path.join(dest,'index.html'),html);fs.writeFileSync(path.join(dest,'style.css'),base+fs.readFileSync(path.join(root,'src/app/basecamp.css'),'utf8'));
+console.log(`Rendered shared production component with ${snapshot.builds.length} public builds to ${dest}`);
+
+fs.writeFileSync(path.join(dest,'theme.js'),`const button=document.getElementById('theme-toggle');function apply(theme){document.documentElement.dataset.theme=theme;button.textContent=theme==='dark'?'☀ Light mode':'☾ Dark mode';button.setAttribute('aria-label','Switch to '+(theme==='dark'?'light':'dark')+' mode')}try{apply(localStorage.getItem('campai-theme')==='light'?'light':'dark')}catch{apply('dark')}button.addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';apply(next);try{localStorage.setItem('campai-theme',next)}catch{}});`);

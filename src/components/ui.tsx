@@ -59,7 +59,7 @@ export function PageHero({
   actions?: ReactNode;
 }) {
   return (
-    <section className="border-b border-ink-700/60 bg-ink-900/30">
+    <section className="bc-subhero border-b border-ink-700/60 bg-ink-900/30">
       <Container className="py-12 sm:py-16">
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ember-400">{eyebrow}</p>
         <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
@@ -90,7 +90,7 @@ export function Prose({ children }: { children: ReactNode }) {
 
 const BUTTON_VARIANTS = {
   primary:
-    "bg-ember-500 text-ink-950 hover:bg-ember-400 font-semibold shadow-[0_8px_28px_-12px_rgba(255,122,26,0.8)]",
+    "bc-primary bg-ember-500 text-ink-950 hover:bg-ember-400 font-semibold",
   secondary: "bg-ink-700 text-mist-100 hover:bg-ink-600 border border-ink-600",
   ghost: "text-mist-300 hover:text-mist-100 hover:bg-ink-800",
   outline: "border border-ember-500/50 text-ember-300 hover:bg-ember-500/10",
@@ -195,8 +195,8 @@ export function Stat({
 /* ------------------------------------------------------------------ avatar */
 
 /**
- * Monogram avatars. Deterministic hue from the name means a builder keeps the
- * same colour everywhere without any image hosting.
+ * Shared, stylesheet-sized avatars keep photos and monograms aligned even
+ * when the serving content policy disallows inline styles.
  */
 export function Avatar({
   name,
@@ -216,8 +216,6 @@ export function Avatar({
     .join("")
     .toUpperCase();
 
-  let h = 0;
-  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) % 360;
 
   if (src) {
     return (
@@ -225,10 +223,11 @@ export function Avatar({
         src={src}
         alt=""
         aria-hidden
-        className={`inline-block shrink-0 rounded-full object-cover ${
+        className={`bc-avatar bc-avatar-${size} inline-block shrink-0 rounded-full object-cover ${
           ring ? "ring-2 ring-ember-500/50 ring-offset-2 ring-offset-ink-900" : ""
         }`}
-        style={{ width: size, height: size }}
+        width={size}
+        height={size}
       />
     );
   }
@@ -236,15 +235,10 @@ export function Avatar({
   return (
     <span
       aria-hidden
-      className={`inline-flex shrink-0 items-center justify-center rounded-full font-display font-semibold text-white ${
+      className={`bc-avatar bc-avatar-${size} inline-flex shrink-0 items-center justify-center rounded-full font-display font-semibold text-white ${
         ring ? "ring-2 ring-ember-500/50 ring-offset-2 ring-offset-ink-900" : ""
       }`}
-      style={{
-        width: size,
-        height: size,
-        fontSize: size * 0.36,
-        background: `linear-gradient(140deg, hsl(${h} 62% 44%), hsl(${(h + 42) % 360} 58% 26%))`,
-      }}
+
     >
       {initials}
     </span>

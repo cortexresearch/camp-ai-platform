@@ -98,10 +98,10 @@ export default async function LeaderboardPage({
             body={showAll ? "Submit a build or rate one to get on the board." : `No points yet for Season ${selectedSeason}. Submit a build or rate one to get on the board.`}
           />
         ) : (
-          <div className="mx-auto max-w-2xl space-y-3">
+          <div className="bc-leaderboard mx-auto max-w-2xl space-y-3">
             {rows.map((r, i) => (
               <Card key={r.id} className="card-link">
-                <Link href={`/u/${r.handle}`} className="flex items-center gap-4 p-4">
+                <Link href={`/u/${r.handle}`} className="bc-leaderboard-row">
                   <span
                     className={`w-7 shrink-0 text-center font-mono text-[13px] font-semibold ${
                       i === 0 ? "text-ember-400" : i === 1 ? "text-aurora-300" : i === 2 ? "text-mist-300" : "text-mist-700"
@@ -110,13 +110,13 @@ export default async function LeaderboardPage({
                     {i + 1}
                   </span>
                   <Avatar name={r.name} src={r.avatar_path ? `/api/uploads/${r.avatar_path}` : undefined} size={44} />
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate font-display text-[15px] font-semibold text-mist-100">{r.name}</p>
-                    <p className="truncate text-[12px] text-mist-700">
+                  <div className="bc-member-copy">
+                    <p className="bc-member-name">{r.name}</p>
+                    <p className="bc-member-meta">
                       @{r.handle} · {r.builds} build{r.builds === 1 ? "" : "s"} · {r.ratings} rating{r.ratings === 1 ? "" : "s"} given
                     </p>
                   </div>
-                  <Pill tone={i < 3 ? RANK_TONE[i] : "neutral"} className="ml-auto shrink-0">
+                  <Pill tone={i < 3 ? RANK_TONE[i] : "neutral"} className="bc-member-score">
                     {r.points} pts
                   </Pill>
                 </Link>

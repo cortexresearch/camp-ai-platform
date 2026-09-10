@@ -39,13 +39,13 @@ export default async function BuildersPage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {builders.map((b) => (
               <Card key={b.id} className="card-link">
-                <Link href={`/u/${b.handle}`} className="flex items-center gap-3 p-4">
+                <Link href={`/u/${b.handle}`} className="bc-builder-row">
                   <Avatar name={b.name} src={b.avatar_path ? `/api/uploads/${b.avatar_path}` : undefined} size={44} />
-                  <div className="min-w-0">
-                    <p className="truncate font-display text-[15px] font-semibold text-mist-100">{b.name}</p>
-                    <p className="truncate text-[12px] text-mist-700">@{b.handle}</p>
+                  <div className="bc-member-copy">
+                    <p className="bc-member-name">{b.name}</p>
+                    <p className="bc-member-meta">@{b.handle}</p>
                   </div>
-                  <Pill tone="ember" className="ml-auto shrink-0">
+                  <Pill tone="ember" className="bc-member-score">
                     {b.build_count} build{b.build_count === "1" ? "" : "s"}
                   </Pill>
                 </Link>

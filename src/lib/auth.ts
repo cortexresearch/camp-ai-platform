@@ -89,10 +89,10 @@ export async function login(email: string, password: string): Promise<{ error: s
     [cleanEmail]
   );
   const row = result.rows[0];
-  if (!row) return { error: "No account with that email." };
+  if (!row) return { error: "Email or password is incorrect." };
 
   const ok = await bcrypt.compare(password, row.password_hash);
-  if (!ok) return { error: "Wrong password." };
+  if (!ok) return { error: "Email or password is incorrect." };
 
   const user: AuthUser = {
     id: row.id,
