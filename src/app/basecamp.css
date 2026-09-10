@@ -57,3 +57,17 @@
 [data-theme="dark"] .bc-layout .bc-primary{background:#c4d69d;border-color:#c4d69d;color:#17251a!important}
 .bc-layout main .font-mono{letter-spacing:.08em}
 @media(max-width:780px){.bc-subhero h1{font-size:34px}.bc-subhero>div{padding-top:28px;padding-bottom:25px}}
+
+/* Profile identity geometry must not depend on inline styles or image dimensions. */
+.bc-avatar{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:40px;height:40px;min-width:40px;aspect-ratio:1;border-radius:50%;object-fit:cover;overflow:hidden;background:#d6e2bc;color:#29432d!important;font:600 15px/1 Arial,sans-serif;border:1px solid #a6b890}
+[data-theme="dark"] .bc-avatar{background:#354b2f;color:#e0ebc8!important;border-color:#59734b}
+.bc-avatar-28{width:28px;height:28px;min-width:28px;font-size:11px}.bc-avatar-40{width:40px;height:40px;min-width:40px;font-size:15px}.bc-avatar-44{width:44px;height:44px;min-width:44px;font-size:16px}.bc-avatar-56{width:56px;height:56px;min-width:56px;font-size:20px}
+.bc-leaderboard{max-width:850px}.bc-leaderboard-row{display:grid;grid-template-columns:32px 44px minmax(0,1fr) 96px;align-items:center;gap:18px;min-height:90px;padding:19px 22px}
+.bc-builder-row{display:grid;grid-template-columns:44px minmax(0,1fr) 82px;align-items:center;gap:13px;min-height:94px;padding:18px}
+.bc-member-copy{min-width:0}.bc-member-name{font:600 16px/1.45 Arial,sans-serif;color:var(--color-mist-100);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0}
+.bc-member-meta{font:13px/1.55 Arial,sans-serif;color:var(--color-mist-500);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:4px 0 0}
+.bc-member-score{display:flex!important;align-items:center;justify-content:center;width:100%;min-height:31px;margin:0!important;white-space:nowrap;font-variant-numeric:tabular-nums;font-size:12px!important;letter-spacing:0!important}
+.bc-leaderboard-row>:first-child{font-variant-numeric:tabular-nums;text-align:center}
+@media(max-width:560px){.bc-leaderboard-row{grid-template-columns:24px 44px minmax(0,1fr) 72px;gap:10px;padding:16px 12px;min-height:84px}.bc-member-name{font-size:14px}.bc-member-meta{font-size:12px}.bc-member-score{font-size:11px!important}.bc-builder-row{gap:10px;padding:16px}}
+
+.bc-avatar-48{width:48px;height:48px;min-width:48px;font-size:17px}.bc-avatar-52{width:52px;height:52px;min-width:52px;font-size:19px}

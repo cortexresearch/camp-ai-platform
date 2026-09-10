@@ -195,8 +195,8 @@ export function Stat({
 /* ------------------------------------------------------------------ avatar */
 
 /**
- * Monogram avatars. Deterministic hue from the name means a builder keeps the
- * same colour everywhere without any image hosting.
+ * Shared, stylesheet-sized avatars keep photos and monograms aligned even
+ * when the serving content policy disallows inline styles.
  */
 export function Avatar({
   name,
@@ -216,8 +216,6 @@ export function Avatar({
     .join("")
     .toUpperCase();
 
-  let h = 0;
-  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) % 360;
 
   if (src) {
     return (
@@ -225,10 +223,11 @@ export function Avatar({
         src={src}
         alt=""
         aria-hidden
-        className={`inline-block shrink-0 rounded-full object-cover ${
+        className={`bc-avatar bc-avatar-${size} inline-block shrink-0 rounded-full object-cover ${
           ring ? "ring-2 ring-ember-500/50 ring-offset-2 ring-offset-ink-900" : ""
         }`}
-        style={{ width: size, height: size }}
+        width={size}
+        height={size}
       />
     );
   }
@@ -236,15 +235,10 @@ export function Avatar({
   return (
     <span
       aria-hidden
-      className={`inline-flex shrink-0 items-center justify-center rounded-full font-display font-semibold text-white ${
+      className={`bc-avatar bc-avatar-${size} inline-flex shrink-0 items-center justify-center rounded-full font-display font-semibold text-white ${
         ring ? "ring-2 ring-ember-500/50 ring-offset-2 ring-offset-ink-900" : ""
       }`}
-      style={{
-        width: size,
-        height: size,
-        fontSize: size * 0.36,
-        background: `linear-gradient(140deg, hsl(${h} 62% 44%), hsl(${(h + 42) % 360} 58% 26%))`,
-      }}
+
     >
       {initials}
     </span>
