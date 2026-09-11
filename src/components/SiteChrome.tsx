@@ -171,7 +171,7 @@ export async function SiteFooter() {
               <span className="font-display text-lg font-bold text-mist-100">CampAI</span>
             </div>
             <p className="mt-3 max-w-xs text-[13px] leading-relaxed text-mist-500">
-              CampAI is a live vibe coding hackathon. Build with AI, ship in 30 minutes,
+              CampAI is a live vibe coding hyper hackathon. Build and ship in 30 minutes,
               compete all season.
             </p>
             <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-mist-700">

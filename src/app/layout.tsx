@@ -20,16 +20,17 @@ export const metadata: Metadata = {
   title: {
     // The brand name has to be literal text, not the 🏕️ mark — "🏕️ AI" is
     // unsearchable, which is why "campai" returned nothing.
-    default: "CampAI — the live vibe coding hackathon. Build with AI, ship in 30 minutes.",
+    default: "CampAI — the live vibe coding hyper hackathon. Build and ship in 30 minutes.",
     template: "%s · CampAI",
   },
   description:
-    "CampAI is a live vibe coding hackathon. Builders get 30 minutes to ship something real with AI, demo it on X, and get rated by everyone watching. New episode every show night — sign up free and compete all season.",
+    "CampAI is a live vibe coding hyper hackathon. Builders get 30 minutes to build and ship something real with AI, demo it on X, and get rated by everyone watching. New episode every show night — sign up free and compete all season.",
   keywords: [
     "CampAI",
     "camp ai",
     "vibe coding",
     "vibe coding hackathon",
+    "hyper hackathon",
     "AI hackathon",
     "AI build competition",
     "live coding competition",
@@ -38,17 +39,17 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     siteName: "CampAI",
-    title: "CampAI — the live vibe coding hackathon",
+    title: "CampAI — the live vibe coding hyper hackathon",
     description:
-      "30 minutes to build with AI, demo live, and get rated. New episode every show night.",
+      "30 minutes to build and ship with AI, demo live, and get rated. New episode every show night.",
     url: SITE_URL,
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "CampAI — the live vibe coding hackathon",
-    description: "30 minutes to build with AI, demo live, and get rated.",
+    title: "CampAI — the live vibe coding hyper hackathon",
+    description: "30 minutes to build and ship with AI, demo live, and get rated.",
   },
   robots: {
     index: true,

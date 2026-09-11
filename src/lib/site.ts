@@ -13,7 +13,7 @@ export const LEGACY_HOSTS = ["campai.cortexresearch.group", "camp-ai-platform-pr
 
 export const SITE_NAME = "CampAI";
 
-export const SITE_TAGLINE = "The live vibe coding hackathon";
+export const SITE_TAGLINE = "The live vibe coding hyper hackathon";
 
 export const SITE_DESCRIPTION =
-  "CampAI is a live vibe coding hackathon. Builders get 30 minutes to ship something real with AI, demo it on X, and get rated by everyone watching.";
+  "CampAI is a live vibe coding hyper hackathon. Builders get 30 minutes to build and ship something real with AI, demo it on X, and get rated by everyone watching.";

@@ -109,15 +109,15 @@ export default async function HomePage() {
             </p>
 
             <h1 className="font-display text-[2.4rem] font-bold leading-[1.05] tracking-tight text-mist-100 sm:text-6xl">
-              CampAI — build with AI.
+              CampAI — build and ship
               <br />
-              Ship in <span className="text-ember-500">30 minutes</span>.
+              in <span className="text-ember-500">30 minutes</span>.
             </h1>
 
             <p className="mt-5 text-[15px] leading-relaxed text-mist-400">
-              CampAI is a live vibe coding hackathon. Every episode, builders get 30 minutes
-              to ship something real on that night&apos;s theme, demo it on X, and get rated
-              by everyone watching.
+              CampAI is a live vibe coding hyper hackathon. Every episode, builders get 30
+              minutes to build and ship something real on that night&apos;s theme, demo it on
+              X, and get rated by everyone watching.
             </p>
 
             <p className="mt-6 text-[15px] leading-relaxed text-mist-500">

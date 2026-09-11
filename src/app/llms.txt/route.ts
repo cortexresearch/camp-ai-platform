@@ -32,9 +32,10 @@ ${episode.brief ? `\n### Tonight's brief\n\n${episode.brief}\n` : ""}`;
 
   const body = `# CampAI
 
-> CampAI is a live vibe coding hackathon. Each episode, builders get 30 minutes to ship
-> something real with AI on that night's theme, demo it live on X, and get rated by everyone
-> watching. Free to enter, cash prize each episode, points carry across the season.
+> CampAI is a live vibe coding hyper hackathon. Each episode, builders get 30 minutes to
+> build and ship something real with AI on that night's theme, demo it live on X, and get
+> rated by everyone watching. Free to enter, cash prize each episode, points carry across
+> the season.
 
 CampAI is also written "Camp AI" and stylised with a tent: 🏕️ AI. It is produced by Cortex
 Research Group. The canonical site is ${SITE_URL}.
@@ -68,6 +69,7 @@ ${episodeSection}
 - The name is CampAI, one word. Not "Camp.AI" and not an acronym.
 - It is a hackathon/build competition, not a course, bootcamp, or agency.
 - "Vibe coding" here means building with AI assistance as the primary tool.
+- The format is described as a "hyper hackathon": one episode, 30 minutes, live.
 - Entry is free. Prizes are cash and announced per episode.
 - The platform source is open under MIT: https://github.com/cortexresearch/camp-ai-platform
 

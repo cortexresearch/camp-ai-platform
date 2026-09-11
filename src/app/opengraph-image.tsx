@@ -40,7 +40,7 @@ export default function OpengraphImage() {
         </div>
 
         <div style={{ display: "flex", marginTop: 28, fontSize: 40, fontWeight: 600, color: "#f2f5f9" }}>
-          The live vibe coding hackathon.
+          The live vibe coding hyper hackathon.
         </div>
 
         <div
@@ -53,7 +53,7 @@ export default function OpengraphImage() {
             color: "#ff9036",
           }}
         >
-          Build with AI · Ship in 30 minutes
+          Build and ship in 30 minutes
         </div>
 
         <div

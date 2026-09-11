@@ -57,7 +57,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     const builders = await pool.query<{ handle: string }>(
-      `select handle from users where handle is not null and handle <> '' limit 1000`
+      `select u.handle from users u
+        where u.handle is not null and u.handle <> ''
+          and exists (select 1 from builds b where b.user_id = u.id)
+        limit 1000`
     );
     for (const builder of builders.rows) {
       entries.push({

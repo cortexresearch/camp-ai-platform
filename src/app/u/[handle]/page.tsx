@@ -5,6 +5,7 @@ import { Container, PageHero, Card, Button, Pill, Avatar, EmptyState } from "@/c
 import { pool } from "@/lib/db";
 import { getCurrentUser } from "@/lib/auth";
 import { SEASON, SEASON_BUILD_GOAL, formatEpisodeCode } from "@/lib/season";
+import { SITE_URL } from "@/lib/site";
 import {
   addPortfolioItemAction,
   changePasswordAction,
@@ -54,7 +55,57 @@ export async function generateMetadata({
   params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
   const { handle } = await params;
-  return { title: `@${handle}` };
+
+  const result = await pool.query<{
+    name: string;
+    build_count: string;
+    latest_title: string | null;
+    latest_theme: string | null;
+  }>(
+    `select u.name,
+            (select count(*) from builds b where b.user_id = u.id) as build_count,
+            (select b.title from builds b where b.user_id = u.id order by b.created_at desc limit 1) as latest_title,
+            (select e.theme from builds b
+               left join episodes e on e.number = (substring(b.episode from 'E(\\d+)$'))::int
+              where b.user_id = u.id order by b.created_at desc limit 1) as latest_theme
+       from users u where u.handle = $1`,
+    [handle]
+  );
+
+  const profile = result.rows[0];
+  if (!profile) return { title: `@${handle}`, robots: { index: false, follow: true } };
+
+  const builds = Number(profile.build_count ?? 0);
+
+  // An empty profile is a real page but not a useful search result. Letting the
+  // ones with nothing on them into the index drags on the whole site's quality
+  // signal; they stay crawlable so their links still count.
+  if (builds === 0) {
+    return {
+      title: `${profile.name} (@${handle})`,
+      description: `${profile.name} on CampAI.`,
+      alternates: { canonical: `/u/${handle}` },
+      robots: { index: false, follow: true },
+    };
+  }
+
+  const latest = profile.latest_title
+    ? ` Most recent: ${profile.latest_title}${profile.latest_theme ? ` (${profile.latest_theme})` : ""}.`
+    : "";
+
+  return {
+    title: `${profile.name} (@${handle})`,
+    description:
+      `${profile.name} has shipped ${builds} build${builds === 1 ? "" : "s"} at CampAI, ` +
+      `the live vibe coding hyper hackathon.${latest} See their builds, ratings, and season standing.`,
+    alternates: { canonical: `/u/${handle}` },
+    openGraph: {
+      type: "profile",
+      title: `${profile.name} (@${handle}) — CampAI builder`,
+      description: `${builds} build${builds === 1 ? "" : "s"} shipped at CampAI.${latest}`,
+      url: `${SITE_URL}/u/${handle}`,
+    },
+  };
 }
 
 export default async function ProfilePage({

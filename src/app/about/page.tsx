@@ -5,7 +5,7 @@ import { pool } from "@/lib/db";
 export const metadata: Metadata = {
   alternates: { canonical: "/about" },
   title: "About",
-  description: "CampAI is a live vibe coding hackathon produced by Cortex Research Group. 30 minutes to build with AI, demo live, and get rated.",
+  description: "CampAI is a live vibe coding hyper hackathon produced by Cortex Research Group. 30 minutes to build and ship with AI, demo live, and get rated.",
 };
 
 const VALUES = [

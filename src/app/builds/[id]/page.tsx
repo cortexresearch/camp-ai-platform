@@ -6,6 +6,8 @@ import { BuildCard, type BuildCardData } from "@/components/BuildCard";
 import { getCurrentUser } from "@/lib/auth";
 import { pool } from "@/lib/db";
 import { addCommentAction, deleteCommentAction } from "@/lib/actions";
+import { formatEpisodeCode } from "@/lib/season";
+import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -65,20 +67,70 @@ async function getComments(buildId: string) {
   return result.rows;
 }
 
+/**
+ * Metadata reads through its own small query rather than getBuild(), which
+ * carries a dozen joins for viewer-specific rating state a crawler never uses.
+ * Next calls generateMetadata and the page body separately, so reusing the
+ * heavy query would run it twice per request.
+ */
+async function getBuildMeta(id: string) {
+  const result = await pool.query<{
+    title: string;
+    how_it_works: string;
+    episode: string;
+    author_name: string;
+    author_handle: string;
+    theme: string | null;
+    avg_rating: string;
+    rating_count: string;
+  }>(
+    `select b.title, b.how_it_works, b.episode,
+            u.name as author_name, u.handle as author_handle,
+            e.theme,
+            coalesce(rs.avg_rating, 0) as avg_rating,
+            coalesce(rs.rating_count, 0) as rating_count
+     from builds b
+     join users u on u.id = b.user_id
+     left join episodes e on e.number = (substring(b.episode from 'E(\\d+)$'))::int
+     left join (select build_id, avg(stars) as avg_rating, count(distinct user_id) as rating_count
+                from ratings group by build_id) rs on rs.build_id = b.id
+     where b.id = $1`,
+    [id]
+  );
+  return result.rows[0] ?? null;
+}
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const build = await getBuild(id, null);
-  if (!build) return { title: "Build" };
+  const build = await getBuildMeta(id);
+  if (!build) return { title: "Build", robots: { index: false, follow: true } };
+
+  // Every build page needs a description no other page could have: the build,
+  // who made it, which episode and theme it answered, and what it does. One
+  // boilerplate description repeated across 160 pages reads as thin content.
+  const episodeName = build.episode ? formatEpisodeCode(build.episode) : "";
+  const context = [episodeName, build.theme].filter(Boolean).join(" · ");
+  const summary = (build.how_it_works ?? "").replace(/\s+/g, " ").trim();
+
+  const description = `${build.title} by ${build.author_name} — built in 30 minutes at CampAI${
+    context ? ` (${context})` : ""
+  }. ${summary}`
+    .slice(0, 300)
+    .trim();
+
   return {
-    title: build.title,
-    description: `${build.title} by ${build.author_name} — built at 🏕️ AI.`,
+    title: `${build.title} by ${build.author_name}`,
+    description,
+    alternates: { canonical: `/builds/${id}` },
     openGraph: {
-      title: `${build.title} — 🏕️ AI`,
-      description: `Built by ${build.author_name}. ${build.how_it_works}`.slice(0, 200),
+      type: "article",
+      title: `${build.title} — built at CampAI`,
+      description: description.slice(0, 200),
+      url: `${SITE_URL}/builds/${id}`,
     },
   };
 }
