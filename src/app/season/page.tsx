@@ -4,6 +4,7 @@ import { Container, PageHero, Card, Pill, Button, SectionHeading, EmptyState } f
 import { SeasonPills } from "@/components/SeasonPills";
 import { SEASON, getEpisodes, episodeSeason, episodeNumberInSeason, type EpisodeStatus } from "@/lib/season";
 import { pool } from "@/lib/db";
+import { buildEpisodeSlugMap } from "@/lib/episode-slug";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/season" },
@@ -40,6 +41,7 @@ export default async function SeasonPage({
   searchParams: Promise<{ episode?: string; season?: string }>;
 }) {
   const episodes = await getEpisodes();
+  const episodeSlugs = buildEpisodeSlugMap(episodes);
   const { episode: episodeParam, season: seasonParam } = await searchParams;
 
   const availableSeasons = Array.from(new Set(episodes.map((ep) => episodeSeason(ep.number)))).sort((a, b) => b - a);
@@ -105,7 +107,12 @@ export default async function SeasonPage({
                 <span className="font-mono text-[11px] font-medium tracking-[0.16em] text-ember-500">
                   {String(episodeNumberInSeason(ep.number)).padStart(2, "0")}
                 </span>
-                <p className="font-display text-[15px] font-semibold text-mist-100">{ep.theme}</p>
+                <Link
+                  href={`/episodes/${episodeSlugs.get(ep.number)}`}
+                  className="font-display text-[15px] font-semibold text-mist-100 hover:text-ember-400"
+                >
+                  {ep.theme}
+                </Link>
               </div>
               <div className="flex items-center gap-3">
                 {codeByNumber.has(ep.number) && (

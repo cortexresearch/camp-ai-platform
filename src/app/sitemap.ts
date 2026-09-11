@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { pool } from "@/lib/db";
 import { SITE_URL } from "@/lib/site";
+import { getEpisodes } from "@/lib/season";
+import { buildEpisodeSlugMap } from "@/lib/episode-slug";
 
 // Built per request rather than at build time: builds and builder profiles are
 // added live during a show, and a sitemap that only refreshes on deploy would
@@ -12,6 +14,7 @@ export const revalidate = 0;
 const STATIC_ROUTES: Array<{ path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }> = [
   { path: "/", priority: 1.0, changeFrequency: "daily" },
   { path: "/challenge", priority: 0.9, changeFrequency: "daily" },
+  { path: "/episodes", priority: 0.9, changeFrequency: "daily" },
   { path: "/builds", priority: 0.9, changeFrequency: "daily" },
   { path: "/leaderboard", priority: 0.8, changeFrequency: "daily" },
   { path: "/season", priority: 0.8, changeFrequency: "daily" },
@@ -39,6 +42,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // A failed query must not take the whole sitemap down — serving the static
   // routes is far better than serving a 500 to a crawler.
+  // One page per episode theme. These are the pages with a real shot at
+  // long-tail search: nobody searches "campai episode 24", they search the
+  // theme.
+  try {
+    const episodes = await getEpisodes();
+    const slugs = buildEpisodeSlugMap(episodes);
+    for (const episode of episodes) {
+      const slug = slugs.get(episode.number);
+      if (!slug) continue;
+      entries.push({
+        url: `${SITE_URL}/episodes/${slug}`,
+        lastModified: episode.live_at ? new Date(episode.live_at) : now,
+        changeFrequency: episode.status === "complete" ? "monthly" : "daily",
+        priority: episode.status === "complete" ? 0.7 : 0.9,
+      });
+    }
+  } catch (err) {
+    console.error("sitemap: failed to list episodes", err);
+  }
+
   try {
     const builds = await pool.query<{ id: string; created_at: Date }>(
       `select id, created_at from builds order by created_at desc limit 1000`

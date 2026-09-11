@@ -15,6 +15,7 @@ export const PRIMARY_NAV = [
   { href: "/builders", label: "Builders" },
   { href: "/leaderboard", label: "Leaderboard" },
   { href: "/season", label: "Season" },
+  { href: "/episodes", label: "Episodes" },
   { href: "/spaces", label: "Spaces" },
 ];
 
@@ -135,6 +136,7 @@ export async function SiteFooter() {
         { href: "/builders", label: "Builders" },
         { href: "/leaderboard", label: "Leaderboard" },
         { href: "/season", label: "Season" },
+        { href: "/episodes", label: "Every episode" },
         { href: "/spaces", label: "Spaces" },
         { href: "/submit", label: "Submit a build" },
         { href: "/signup", label: "Sign up" },
