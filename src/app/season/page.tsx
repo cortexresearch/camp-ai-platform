@@ -6,6 +6,7 @@ import { SEASON, getEpisodes, episodeSeason, episodeNumberInSeason, type Episode
 import { pool } from "@/lib/db";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/season" },
   title: "Season",
   description: `Every episode of Season ${SEASON} — themes, status, and who won.`,
 };

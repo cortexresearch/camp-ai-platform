@@ -3,8 +3,9 @@ import { Container, PageHero, Card, Button } from "@/components/ui";
 import { submitPartnerInquiryAction } from "@/lib/actions";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/partnership" },
   title: "Partner with us",
-  description: "Interested in partnering with 🏕️ AI? Tell us about your company and what you have in mind.",
+  description: "Interested in sponsoring CampAI? Tell us about your company and what you have in mind.",
 };
 
 export default async function PartnershipPage({

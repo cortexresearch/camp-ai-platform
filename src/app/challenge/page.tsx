@@ -3,7 +3,12 @@ import { Container, PageHero, Card, Button, Pill } from "@/components/ui";
 import { SeasonCountdown } from "@/components/SeasonCountdown";
 import { getCurrentEpisode, episodeSeason, episodeNumberInSeason, TONIGHT } from "@/lib/season";
 
-export const metadata: Metadata = { title: "Challenge" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/challenge" },
+  title: "Challenge",
+  description:
+    "Tonight's CampAI challenge: the theme, the brief, the build window, and the prize. 30 minutes to ship something real with AI.",
+};
 export const dynamic = "force-dynamic";
 
 export default async function ChallengePage() {

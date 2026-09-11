@@ -4,7 +4,12 @@ import { Container, PageHero, Card, Button } from "@/components/ui";
 import { loginAction } from "@/lib/actions";
 import { getCurrentEpisode, episodeLabel } from "@/lib/season";
 
-export const metadata: Metadata = { title: "Log in" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/login" },
+  title: "Log in",
+  description:
+    "Log in to CampAI to submit a build and rate others.",
+};
 
 export default async function LoginPage({
   searchParams,

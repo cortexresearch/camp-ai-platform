@@ -5,7 +5,12 @@ import { SeasonPills } from "@/components/SeasonPills";
 import { pool } from "@/lib/db";
 import { getAvailableSeasons, seasonSqlExpr, SEASON } from "@/lib/season";
 
-export const metadata: Metadata = { title: "Leaderboard" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/leaderboard" },
+  title: "Leaderboard",
+  description:
+    "CampAI season standings. Points from every episode, ranked.",
+};
 export const dynamic = "force-dynamic";
 
 const POINTS_PER_SUBMISSION = 10;

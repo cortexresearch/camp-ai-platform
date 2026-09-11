@@ -3,8 +3,9 @@ import { Container, Card, PageHero, SectionHeading, Stat, Button, Avatar } from 
 import { pool } from "@/lib/db";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About",
-  description: "🏕️ AI is a live AI build competition produced by Cortex Research Group.",
+  description: "CampAI is a live vibe coding hackathon produced by Cortex Research Group. 30 minutes to build with AI, demo live, and get rated.",
 };
 
 const VALUES = [

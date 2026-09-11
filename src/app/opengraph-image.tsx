@@ -35,12 +35,12 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
           <div style={{ display: "flex", fontSize: 128 }}>🏕️</div>
           <div style={{ display: "flex", fontSize: 148, fontWeight: 700, color: "#f2f5f9", letterSpacing: -4 }}>
-            AI
+            CampAI
           </div>
         </div>
 
         <div style={{ display: "flex", marginTop: 28, fontSize: 40, fontWeight: 600, color: "#f2f5f9" }}>
-          Build with AI. Ship in 30 minutes.
+          The live vibe coding hackathon.
         </div>
 
         <div
@@ -53,7 +53,7 @@ export default function OpengraphImage() {
             color: "#ff9036",
           }}
         >
-          Compete all season
+          Build with AI · Ship in 30 minutes
         </div>
 
         <div
@@ -67,7 +67,7 @@ export default function OpengraphImage() {
             color: "#5d6879",
           }}
         >
-          campai.cortexresearch.group
+          campai.space
         </div>
       </div>
     ),

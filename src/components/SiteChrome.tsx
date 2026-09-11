@@ -55,7 +55,7 @@ export async function SiteHeader() {
             <span className="text-xl leading-none" aria-hidden>
               🏕️
             </span>
-            <span className="font-display text-[17px] font-bold tracking-tight text-mist-100">AI</span>
+            <span className="font-display text-[17px] font-bold tracking-tight text-mist-100">CampAI</span>
           </Link>
           <a
             href={PRODUCER_URL}
@@ -168,10 +168,11 @@ export async function SiteFooter() {
               <span className="text-xl" aria-hidden>
                 🏕️
               </span>
-              <span className="font-display text-lg font-bold text-mist-100">AI</span>
+              <span className="font-display text-lg font-bold text-mist-100">CampAI</span>
             </div>
             <p className="mt-3 max-w-xs text-[13px] leading-relaxed text-mist-500">
-              Build with AI. Ship in 30 minutes. Compete all season.
+              CampAI is a live vibe coding hackathon. Build with AI, ship in 30 minutes,
+              compete all season.
             </p>
             <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-mist-700">
               Produced by{" "}
@@ -202,7 +203,7 @@ export async function SiteFooter() {
         <div className="rule my-10" />
 
         <div className="flex flex-wrap items-center justify-between gap-4 text-[12px] text-mist-700">
-          <p>© {new Date().getFullYear()} 🏕️ AI. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} CampAI. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-3">
             <Pill tone="ember">{currentEpisode ? episodeLabel(currentEpisode) : ""}{isLive ? " · live" : ""}</Pill>
           </div>

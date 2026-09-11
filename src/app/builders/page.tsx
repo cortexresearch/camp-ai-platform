@@ -3,7 +3,12 @@ import Link from "next/link";
 import { Container, PageHero, Card, Avatar, Pill, EmptyState } from "@/components/ui";
 import { pool } from "@/lib/db";
 
-export const metadata: Metadata = { title: "Builders" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/builders" },
+  title: "Builders",
+  description:
+    "The builders competing at CampAI. Profiles, builds shipped, and season standings.",
+};
 export const dynamic = "force-dynamic";
 
 interface BuilderRow {

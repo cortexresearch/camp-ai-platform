@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Container, Card, PageHero, SectionHeading, Button } from "@/components/ui";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/rules" },
   title: "Rules",
-  description: "The rules for 🏕️ AI — build window, submission, and rating.",
+  description: "The rules for CampAI — build window, submission requirements, and how rating works.",
 };
 
 const CORE_RULES = [

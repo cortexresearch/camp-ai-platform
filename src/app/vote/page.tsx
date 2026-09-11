@@ -6,7 +6,12 @@ import { getCurrentUser } from "@/lib/auth";
 import { pool } from "@/lib/db";
 import { getCurrentEpisode, episodeCode, episodeNumberInSeason } from "@/lib/season";
 
-export const metadata: Metadata = { title: "Vote" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/vote" },
+  title: "Vote",
+  description:
+    "Rate tonight's CampAI builds on name, pitch, product, and UI. Highest score takes the prize.",
+};
 export const dynamic = "force-dynamic";
 
 export default async function VotePage() {

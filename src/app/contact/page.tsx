@@ -3,8 +3,9 @@ import { Container, Card, PageHero, SectionHeading, Button } from "@/components/
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact",
-  description: "Reach 🏕️ AI — builder support, partnerships, and reports.",
+  description: "Reach CampAI — builder support, partnerships, and reports.",
 };
 
 const CHANNELS = [

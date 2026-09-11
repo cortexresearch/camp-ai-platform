@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Container, Card, PageHero, SectionHeading, Button } from "@/components/ui";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/faq" },
   title: "FAQ",
-  description: "Answers to the questions builders and judges ask most about 🏕️ AI.",
+  description: "Answers to the questions builders and judges ask most about CampAI — the live vibe coding hackathon.",
 };
 
 const GROUPS: { title: string; items: { q: string; a: string }[] }[] = [

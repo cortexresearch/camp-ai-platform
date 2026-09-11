@@ -3,6 +3,7 @@ import { Container, PageHero, Card, Button, EmptyState } from "@/components/ui";
 import { SEASON, getEpisodes, episodeLabel } from "@/lib/season";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/spaces" },
   title: "Spaces",
   description: `Every X Spaces recording from Season ${SEASON}.`,
 };

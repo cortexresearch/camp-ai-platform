@@ -6,7 +6,12 @@ import { getCurrentUser } from "@/lib/auth";
 import { submitBuildAction } from "@/lib/actions";
 import { getEpisodes, getCurrentEpisode, episodeLabel } from "@/lib/season";
 
-export const metadata: Metadata = { title: "Submit your build" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/submit" },
+  title: "Submit your build",
+  description:
+    "Submit your CampAI build before the window closes. Title, demo, how you made it, and the models you used.",
+};
 export const dynamic = "force-dynamic";
 
 export default async function SubmitPage({

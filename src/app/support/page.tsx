@@ -4,8 +4,9 @@ import { Container, PageHero, Card, Button } from "@/components/ui";
 const COFFEE_URL = "https://buymeacoffee.com/cortexresearch";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/support" },
   title: "Support",
-  description: "Support 🏕️ AI. Every dollar goes back into the platform, the spaces, and prizes for builders.",
+  description: "Support CampAI. Every dollar goes back into the platform, the Spaces, and prizes for builders.",
 };
 
 export default function SupportPage() {

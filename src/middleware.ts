@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { hit, clientIp, type RateLimitRule } from "@/lib/rate-limit";
+import { SITE_URL, LEGACY_HOSTS } from "@/lib/site";
 
 // Three tiers, loosest to tightest. A request is checked against every tier it
 // qualifies for, so a login POST consumes browse, write, and auth budget.
@@ -36,6 +37,16 @@ function tooMany(retryAfterSeconds: number) {
 }
 
 export function middleware(request: NextRequest) {
+  // Send every non-canonical hostname to campai.space, permanently. Two
+  // hostnames serving identical pages splits ranking signal between them and
+  // reads as duplicate content; a 308 tells search engines which one counts
+  // while keeping old links, bookmarks, and shared URLs working.
+  const host = request.headers.get("host")?.split(":")[0] ?? "";
+  if (LEGACY_HOSTS.includes(host)) {
+    const target = new URL(request.nextUrl.pathname + request.nextUrl.search, SITE_URL);
+    return NextResponse.redirect(target, 308);
+  }
+
   const ip = clientIp(request.headers);
   const { pathname } = request.nextUrl;
   const isWrite = request.method === "POST";

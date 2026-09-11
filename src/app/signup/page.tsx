@@ -4,7 +4,12 @@ import { Container, PageHero, Card, Button } from "@/components/ui";
 import { signupAction } from "@/lib/actions";
 import { getCurrentEpisode, episodeLabel } from "@/lib/season";
 
-export const metadata: Metadata = { title: "Sign up" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/signup" },
+  title: "Sign up",
+  description:
+    "Create a free CampAI account to submit builds, vote, and compete for the season prize.",
+};
 
 export default async function SignupPage({
   searchParams,

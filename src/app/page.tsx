@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, Card, Button, Pill, LiveDot, SectionHeading, Stat } from "@/components/ui";
 import { SeasonCountdown } from "@/components/SeasonCountdown";
@@ -5,6 +6,8 @@ import { LiveCountdown } from "@/components/LiveCountdown";
 import { AutoRefresh } from "@/components/AutoRefresh";
 import { pool } from "@/lib/db";
 import { SEASON, SEASON_THEME, SEASON_SPONSOR, TONIGHT, getCurrentEpisode, isEpisodeLiveNow, episodeLabel } from "@/lib/season";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -106,10 +109,16 @@ export default async function HomePage() {
             </p>
 
             <h1 className="font-display text-[2.4rem] font-bold leading-[1.05] tracking-tight text-mist-100 sm:text-6xl">
-              Build with AI.
+              CampAI — build with AI.
               <br />
               Ship in <span className="text-ember-500">30 minutes</span>.
             </h1>
+
+            <p className="mt-5 text-[15px] leading-relaxed text-mist-400">
+              CampAI is a live vibe coding hackathon. Every episode, builders get 30 minutes
+              to ship something real on that night&apos;s theme, demo it on X, and get rated
+              by everyone watching.
+            </p>
 
             <p className="mt-6 text-[15px] leading-relaxed text-mist-500">
               {isLive ? "Tonight's" : "Last episode's"} theme:{" "}

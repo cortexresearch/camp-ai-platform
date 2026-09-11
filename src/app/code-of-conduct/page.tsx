@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Container, Card, PageHero, SectionHeading, Button } from "@/components/ui";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/code-of-conduct" },
   title: "Code of conduct",
-  description: "The standard every builder, judge, and partner agrees to at 🏕️ AI.",
+  description: "The standard every builder, judge, and partner agrees to at CampAI.",
 };
 
 const EXPECTED = [

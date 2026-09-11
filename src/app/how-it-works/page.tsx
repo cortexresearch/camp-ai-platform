@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Container, Card, PageHero, SectionHeading, Button } from "@/components/ui";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/how-it-works" },
   title: "How it works",
-  description: "The 🏕️ AI format: sign up, build in the window, submit, rate.",
+  description: "How CampAI works: sign up free, build with AI inside the 30-minute window, submit, and rate every build.",
 };
 
 const FLOW = [

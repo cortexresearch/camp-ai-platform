@@ -16,7 +16,12 @@ import {
   SEASON,
 } from "@/lib/season";
 
-export const metadata: Metadata = { title: "Builds" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/builds" },
+  title: "Builds",
+  description:
+    "Every build shipped at CampAI, episode by episode — what it does, how it was made, and what it scored.",
+};
 export const dynamic = "force-dynamic";
 
 export default async function BuildsPage({

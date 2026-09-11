@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
+import { SITE_URL } from "@/lib/site";
+import { OrganizationJsonLd } from "@/components/JsonLd";
 
 export const dynamic = "force-dynamic";
 
@@ -10,20 +12,50 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://campai.cortexresearch.group"),
+  // campai.space is the canonical home. campai.cortexresearch.group serves the
+  // same app and is 301'd to it in middleware, so search engines consolidate
+  // signal on one hostname instead of splitting it across two.
+  metadataBase: new URL(SITE_URL),
+  applicationName: "CampAI",
   title: {
-    default: "🏕️ AI — Build with AI. Ship in 30 minutes. Compete all season.",
-    template: "%s · 🏕️ AI",
+    // The brand name has to be literal text, not the 🏕️ mark — "🏕️ AI" is
+    // unsearchable, which is why "campai" returned nothing.
+    default: "CampAI — the live vibe coding hackathon. Build with AI, ship in 30 minutes.",
+    template: "%s · CampAI",
   },
   description:
-    "🏕️ AI is a live AI build competition. Builders get 30 minutes to ship, demo, and compete. Produced by Cortex Research Group.",
+    "CampAI is a live vibe coding hackathon. Builders get 30 minutes to ship something real with AI, demo it on X, and get rated by everyone watching. New episode every show night — sign up free and compete all season.",
+  keywords: [
+    "CampAI",
+    "camp ai",
+    "vibe coding",
+    "vibe coding hackathon",
+    "AI hackathon",
+    "AI build competition",
+    "live coding competition",
+    "build with AI",
+    "ship in 30 minutes",
+  ],
   openGraph: {
-    title: "🏕️ AI — a competitive AI builder league",
-    description: "Build with AI. Ship in 30 minutes. Compete all season.",
+    siteName: "CampAI",
+    title: "CampAI — the live vibe coding hackathon",
+    description:
+      "30 minutes to build with AI, demo live, and get rated. New episode every show night.",
+    url: SITE_URL,
     type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CampAI — the live vibe coding hackathon",
+    description: "30 minutes to build with AI, demo live, and get rated.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 };
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -46,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <OrganizationJsonLd />
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
