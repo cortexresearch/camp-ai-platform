@@ -4,15 +4,11 @@ import { randomBytes } from "node:crypto";
 import bcrypt from "bcryptjs";
 import { pool } from "./db";
 import { sendPasswordResetEmail } from "./email";
+import { SITE_URL } from "./site";
 
 export const SESSION_COOKIE = "campai_session";
 const SESSION_DAYS = 30;
 const RESET_TOKEN_HOURS = 1;
-
-function getBaseUrl(): string {
-  const domain = process.env.RAILWAY_PUBLIC_DOMAIN;
-  return domain ? `https://${domain}` : "https://campai.cortexresearch.group";
-}
 
 export type UserRole = "builder" | "judge";
 
@@ -120,7 +116,7 @@ export async function requestPasswordReset(email: string): Promise<void> {
     [token, user.id, expiresAt]
   );
 
-  const resetUrl = `${getBaseUrl()}/reset-password?token=${token}`;
+  const resetUrl = `${SITE_URL}/reset-password?token=${token}`;
   await sendPasswordResetEmail(cleanEmail, resetUrl);
 }
 
